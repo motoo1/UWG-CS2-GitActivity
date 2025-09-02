@@ -1,0 +1,11 @@
+commit 140e83d0f992979dfcefc3d02982c429da7c3d58
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 2 15:30:30 2025 -0400
+
+    My first real commit after understanding
+
+commit ea6e0ee60d5e2c075c402e9898c1d8ae94a200ad
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Aug 19 10:04:43 2025 -0400
+
+    Initial commit
