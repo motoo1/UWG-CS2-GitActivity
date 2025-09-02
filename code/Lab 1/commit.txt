@@ -1,0 +1,11 @@
+commit 798f0187f6d659350831052a5701e098c287ae0f
+Author: Maame Ama Effisah Otoo <motoo1@my.westga.edu>
+Date:   Thu Aug 21 10:09:27 2025 -0400
+
+    food
+
+commit 7549c7b7565a1766c0bf463510f23ac2eaea4f13
+Author: Archer-Davis <adavi101@my.westga.edu>
+Date:   Tue Aug 19 10:04:40 2025 -0400
+
+    Initial commit
