@@ -4,11 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
-
-
-
-
+import edu.westga.cs1302.lab3.model.Bill;
+import edu.westga.cs1302.lab3.model.BillItem;
 
 /**
  * Controller class for drawing various things to our canvas window.
@@ -18,24 +15,33 @@ import javafx.scene.control.TextField;
  */
 public class MainWindow {
 	@FXML
-    private TextField amount;
-
-    @FXML
     private TextField name;
 
     @FXML
-    private TextArea output;
+    private TextField amount;
 
     @FXML
+    private TextArea output;
+     
+    private Bill bill;
+      
+    @FXML
     void addItem(ActionEvent event) {
-
+    	String name = this.name.getText();
+    	double amount = Double.parseDouble(this.amount.getText());
+        
+        BillItem item = new BillItem(name, amount);
+        this.bill.addItem(item);
+        
+        BillView billView = new BillView();
+        String billText = billView.getText(this.bill);
+        this.output.setText(billText);
     }
-
-    
+ 
     /**
      * Perform any needed initialization of UI components and underlying objects.
      */
     public void initialize() {
-    	
+    	this.bill = new Bill();
     }
 }
