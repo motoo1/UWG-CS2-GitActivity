@@ -27,8 +27,7 @@ public class BillCalculator {
 		return subtotal;
 	}
 	
-	  /** 
-	 * Calculates tax for the given BillItem array
+    /** Calculates tax for the given BillItem array
 	 * 
 	 * @param items an array of BillItem objects
 	 * @param taxRate the tax rate as a decimal 
@@ -50,15 +49,14 @@ public class BillCalculator {
     	return calculateSubtotal(items) * tipRate;
     }
     
-    /** 
-   	 * Calculates tax for the given BillItem array
+    /**  Calculates the total for the given BillItem array
    	 * 
    	 * @param items an array of BillItem objects
    	 * @param taxRate the tax rate as a decimal
    	 * @param tipRate the tip rate as a decimal 
    	 * @return the total amount
    	 */
-   public static double calculateTotal(BillItem[] items, double taxRate, double tipRate) {
+    public static double calculateTotal(BillItem[] items, double taxRate, double tipRate) {
 	   return calculateSubtotal(items) + calculateTax(items, taxRate) + calculateTip(items, tipRate);
 	   
    }
