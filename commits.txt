@@ -1,0 +1,51 @@
+commit 6d1809fb5ee2dd28282bee3b9d18d42e725be413
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Sep 4 14:31:25 2025 -0400
+
+    Implement behavior of system
+    
+    created a new billItem , stored the bill as a private field, added amount and name to display the bill text.
+
+commit c5293682c3cb515a3443cfffc0681d434b6c4926
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Sep 4 12:58:02 2025 -0400
+
+    Develop a GUI
+    
+    Implemented a text field, text area, labels and button in my GUI.
+
+commit f41723de56b673e06a67c22cdbd670f1a1b16f96
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Sep 4 10:51:36 2025 -0400
+
+    Setting up JavaFx Lab 3
+    
+    Added Bill model classes to javafx sample project
+    Renamed project and base package for lab3 along withj corresponding references.
+    Did not incorporate tests for Bill project classes yet.
+
+commit 3f60ad3dbadce381f23fce3be8d5adbfc410cb85
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Wed Sep 3 12:37:03 2025 -0400
+
+    Tested addItem, getText, constructor
+    
+    implemented tests for the Bill::addItem method, BillItem::constructor, and BillView::getText method.
+
+commit d96dd496bd81e88c993ea23ce0daa728aa429d27
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 2 15:40:08 2025 -0400
+
+    This is my second commit after understanding
+
+commit 140e83d0f992979dfcefc3d02982c429da7c3d58
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 2 15:30:30 2025 -0400
+
+    My first real commit after understanding
+
+commit ea6e0ee60d5e2c075c402e9898c1d8ae94a200ad
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Aug 19 10:04:43 2025 -0400
+
+    Initial commit
