@@ -2,6 +2,7 @@ package edu.westga.cs1302.bill.view;
 
 import edu.westga.cs1302.bill.model.Bill;
 import edu.westga.cs1302.bill.model.BillItem;
+import edu.westga.cs1302.bill.model.BillCalculator;
 
 /** Supports displaying the information contained in a Bill.
  * 
@@ -10,15 +11,33 @@ import edu.westga.cs1302.bill.model.BillItem;
  */
 public class BillView {
 
-	/** Return a String containing the list of bill items and total for the bill.
+	/** Return a String containing the list of bill, showing subtotal, tax, tip, and total
 	 * 
-	 * @precondition none
-	 * @postcondition none
-	 * 
-	 * @param bill the bill to be viewed
-	 * 
+	 * @param items the array of BillItems
+	 * @param taxRate the tax rate
+	 * @param tipRate the tip rate
 	 * @return a String containing the list of bill items and total for the bill
 	 */
+	
+	public  String getText(BillItem[] items, double taxRate, double tipRate) {
+		double subtotal = BillCalculator.calculateSubtotal(items);
+		double tax = BillCalculator.calculateTax(items, taxRate);
+		double tip = BillCalculator.calculateTip(items, tipRate);
+		double total = BillCalculator.calculateTotal(items, taxRate, tipRate);
+		
+		return "Subtotal: $" + subtotal + "\n" 
+		+ "Tax: $" + tax + "\n" 
+		+ "Tip: $" + tip + "\n" 
+		+ "Total: $" + total;
+	}
+	
+	/**
+	 * Builds a formatted text string showing the bill details
+	 * 
+	 * @param bill the Bill object containing items, tax rate and tip rate.
+	 * @return a formatted string representation of the bill
+	 */
+	
 	public static String getText(Bill bill) {
 		String text = "ITEMS" + System.lineSeparator();
 		double subTotal = 0.0;
