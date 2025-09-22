@@ -22,5 +22,9 @@
       <ComboBox fx:id="priorityCombo" prefWidth="150.0" />
       <Button mnemonicParsing="false" onAction="#onAddTask" text="Add Task" />
       <ListView fx:id="taskListView" prefHeight="200.0" prefWidth="200.0" />
+      <Label text="Selected Task Description" />
+      <TextArea fx:id="selectedDescriptionArea" editable="false" prefHeight="200.0" prefWidth="200.0" />
+      <Label text="Selected Task Priority" />
+      <TextField fx:id="selectedPriorityField" editable="false" />
    </children>
 </VBox>

@@ -33,6 +33,12 @@ public class MainWindow {
     @FXML
     private ListView<Task> taskListView;
     
+    @FXML
+    private TextArea selectedDescriptionArea;
+    
+    @FXML
+    private TextField selectedPriorityField;
+    
     private ObservableList<Task> tasks;
 	
     
@@ -45,10 +51,22 @@ public class MainWindow {
     	taskListView.setItems(tasks);
     	
     	priorityCombo.setItems(FXCollections.observableArrayList("High","Medium","Low"));
-    }
+    	taskListView.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue,newTask) -> {
+    		
+    	if (newTask != null) {
+    		selectedDescriptionArea.setText(newTask.getDescription());
+    		selectedPriorityField.setText(newTask.getPriority());
+    	} else {
+    		selectedDescriptionArea.clear();
+    		selectedPriorityField.clear();
+    	}
+    	}
+    	);
+   
+}
     
     @FXML
-    public void onAddTask() {
+    public void onAddTask(ActionEvent event) {
     String name = nameField.getText().trim();
 	String description = descriptionArea.getText().trim();
 	String priority = priorityCombo.getValue();
