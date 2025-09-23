@@ -21,6 +21,7 @@
       <Label text="Priority" />
       <ComboBox fx:id="priorityCombo" prefWidth="150.0" />
       <Button mnemonicParsing="false" onAction="#onAddTask" text="Add Task" />
+      <Button fx:id="removeTaskButton" mnemonicParsing="false" onAction="#onRemoveTask" text="Remove Task" />
       <ListView fx:id="taskListView" prefHeight="200.0" prefWidth="200.0" />
       <Label text="Selected Task Description" />
       <Button mnemonicParsing="false" onAction="#onUpdateDescription" text="Update Description" />

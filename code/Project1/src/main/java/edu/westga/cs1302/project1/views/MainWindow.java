@@ -10,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 
 
 
@@ -37,6 +38,18 @@ public class MainWindow {
      
      @FXML
      private TextField selectedPriorityField;
+     
+     @FXML
+     private Button removeTaskButton;
+     
+     
+     @FXML
+     void onRemoveTask(ActionEvent event) {
+    	 Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
+    	 if (selectedTask != null) {
+    		 taskListView.getItems().remove(selectedTask);
+    	 }
+     }
      
 
 	
