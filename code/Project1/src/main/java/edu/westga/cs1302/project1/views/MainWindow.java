@@ -1,6 +1,7 @@
 package edu.westga.cs1302.project1.views;
 
 import edu.westga.cs1302.project1.model.Task;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,26 +21,24 @@ import javafx.scene.control.TextField;
  */
 public class MainWindow {
 	
-   
-	@FXML
-    private TextArea descriptionArea;
-
     @FXML
     private TextField nameField;
-
+    
     @FXML
     private ComboBox<String> priorityCombo;
 
     @FXML
     private ListView<Task> taskListView;
     
-    @FXML
-    private TextArea selectedDescriptionArea;
-    
-    @FXML
-    private TextField selectedPriorityField;
-    
     private ObservableList<Task> tasks;
+    
+     @FXML
+    private TextArea descriptionArea;
+     
+     @FXML
+     private TextField selectedPriorityField;
+     
+
 	
     
     /**
@@ -51,13 +50,12 @@ public class MainWindow {
     	taskListView.setItems(tasks);
     	
     	priorityCombo.setItems(FXCollections.observableArrayList("High","Medium","Low"));
-    	taskListView.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue,newTask) -> {
-    		
-    	if (newTask != null) {
-    		selectedDescriptionArea.setText(newTask.getDescription());
+    	taskListView.getSelectionModel().selectedItemProperty().addListener((observable, oldTask,newTask) -> {
+    		if (newTask != null) {
+    		descriptionArea.setText(newTask.getDescription());
     		selectedPriorityField.setText(newTask.getPriority());
     	} else {
-    		selectedDescriptionArea.clear();
+    		descriptionArea.clear();
     		selectedPriorityField.clear();
     	}
     	}
@@ -67,23 +65,30 @@ public class MainWindow {
     
     @FXML
     public void onAddTask(ActionEvent event) {
-    String name = nameField.getText().trim();
-	String description = descriptionArea.getText().trim();
+    String name = nameField.getText();
 	String priority = priorityCombo.getValue();
 	
-	if(name.isEmpty() || priority == null) {
-		System.out.println("Task name and priority are required.");
-		return;
-	}
-	
-	Task newTask = new Task(name, description, priority);
-	tasks.add(newTask);
+	if(name  != null && !name.isBlank() && priority != null) {	
+	  Task newTask = new Task(name, priority);
+	  tasks.add(newTask);
 	
 	nameField.clear();
-	descriptionArea.clear();
 	priorityCombo.setValue(null);
 }
 }
+    
+    @FXML
+    private void onUpdateDescription(ActionEvent event) {
+    	Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
+    	if (selectedTask != null) {
+    		String newDescription = descriptionArea.getText();
+    		selectedTask.setDescription(newDescription);
+    		taskListView.refresh();
+    	}
+    }
+    	}
+  
+    
 
     
     

@@ -1,32 +1,33 @@
 package edu.westga.cs1302.project1.model;
 
 public class Task {
-	private String name;
 	private String description;
 	private String priority;
 	
 	// Constructor
-	public Task(String name, String description, String priority) {
-		this.name = name;
+	public Task( String description, String priority) {
 		this.description = description;
 		this.priority = priority;
 	}
     
 	// Getters
-	public String getName() {
-		return this.name;
-	}
-	
 	public String getDescription() {
-		return this.description;	
+		return description;	
 	}
 	
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getPriority() {
-		return this.priority;
+		return priority;
+	}
+	
+	public void setPriority(String priority) {
+		this.priority = priority;
 	}
 	
 	public String toString() {
-		return this.name + " (" + this.priority + ")";
+		return description + " (" + priority + ")";
 	}
 	
 }
