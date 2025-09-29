@@ -1,3 +1,12 @@
+commit bc3be113a12ada13f0a249b9021d2c59e87a3bb2
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Mon Sep 29 07:57:51 2025 -0400
+
+    Business Logic for Counting Tasks(Part 5B)
+    
+    Added Utility method to count tasks by specified priority
+    Updated version of part 5b
+
 commit 41489fe89ab2eabec1e576e495d6df958728ed98
 Author: motoo1 <motoo1@my.westga.edu>
 Date:   Mon Sep 29 07:41:10 2025 -0400
