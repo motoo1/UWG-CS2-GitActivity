@@ -1,0 +1,8 @@
+maame,4
+kelvin,3
+maame,3
+khut7,5
+bob,5
+rieke,2
+rieke,2
+sam,3

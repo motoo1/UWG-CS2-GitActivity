@@ -1,0 +1,20 @@
+## TESTING ATTEMPTS
+
+### 1. JUnit Setup Attempts:
+- Added JUnit 5 to build path multiple times
+- Configured module-info.java with requires org.junit.jupiter.api
+- Tried both JUnit 5 and JUnit 4 configurations
+- Received "The type org.junit.jupiter.api.Test is not accessible" errors
+
+### 2. Issues Encountered:
+- Module system conflicts with JUnit accessibility
+- Eclipse configuration issues in virtual lab environment
+- Persistent "Unbound module" errors in console
+- "Run As → JUnit Test" option never appeared despite proper setup
+
+### 3. Alternative Testing Performed:
+- Created SimpleTaskTest.java with main method tests
+
+### 4. Technical Error:
+- Java module system required for JavaFX application
+- Conflicts between module requirements and test dependencies

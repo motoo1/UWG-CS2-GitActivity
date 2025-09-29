@@ -1,3 +1,79 @@
+commit b62c47f9b36eaaa8eb672f49ec1f3155244ae86f
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 23 14:39:58 2025 -0400
+
+    Updating some parts of the commits because it was messing up
+    
+    Implementing UI
+    
+    Made task description editable in UI and update the button associated method in the mainWindow(part 3A)
+
+commit b53e76516266b98bdc8a7103b63b730b8227c980
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 23 12:28:20 2025 -0400
+
+    Implement UI for adding tasks(Part 1 A)
+    
+    Added fields(textfield and textarea), combo box, button, labels and listview in FXML
+
+commit 04fe6269300d78d1d987363cb14009f504f0e935
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 23 09:56:07 2025 -0400
+
+    Implement task removal  functionality in MainWindow(part 4B)
+    
+    Added removeTask() method to handle removing current selected task from listView
+    Integrated the method with the Remove Task button action
+
+commit e9f107ab3881b2797194186cbe0f4d383e09acce
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 23 09:48:03 2025 -0400
+
+    Add UI for removing tasks from the list
+    
+    Updated MainWindow.fxml to include remove task button
+    Linked the button to a removeTask method in MainWindow
+    This is for part 4A
+
+commit badb81e15c73292a9cb67c9706cb08b5325a82a0
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Mon Sep 22 22:32:42 2025 -0400
+
+    Implementing UI
+    
+    Added editable textarea for task description in mainwindow and also update
+    description button
+
+commit d37a20699bf3cc7c057c2bdb277932b38d1943e3
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Sun Sep 21 22:37:34 2025 -0400
+
+    Updating the UI(Part 2A)
+    
+    Updated the UI to show description and priority of a new task(labels,
+    read-only textarea and textfield).
+    
+    Connected UI to display selected task
+    
+    Connected the UI to busines logic so when a task is selected, its description
+    and priority are displayed in the properread-only components.
+
+commit a686e6cf7513133c1d6a948542a0af471db36aa8
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Sat Sep 20 22:22:22 2025 -0400
+
+    Implement UI for adding tasks (1A)
+    
+    Added fields(textfield and textarea), combo box, button, labels, and listview in FXML
+    
+    Add Task class (1B)
+    
+    stores name, description, and priority with toString
+    
+    Connect UI to business logic (1C)
+    
+    Implemented initialize() and onAddTask() to add tasks to listview
+
 commit 742ff890ee561dc88f8889f0952ee23487bf7f6a
 Author: motoo1 <motoo1@my.westga.edu>
 Date:   Thu Sep 11 13:50:59 2025 -0400
