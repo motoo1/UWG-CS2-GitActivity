@@ -11,6 +11,7 @@ import edu.westga.cs1302.project1.model.Task;
  */
 
 class SimpleTaskTest{
+	
 
 	public static void main(String[] args) {
 		System.out.println("Simple task tests");
