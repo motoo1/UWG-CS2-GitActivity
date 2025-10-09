@@ -1,0 +1,61 @@
+ Save Student Data
+Your first task is reimplement functionality to save the data for the current current set of students when the save button is pressed.
+The students should be saved in a CSV (comma separated value) format with one student per line and using a comma to separate the name and grade. For example, a student with the name bob and the grade 87 would appear as follows.
+
+bob,87
+
+
+o reimplement the "Save Student Data" feature in a typical application (e.g., using JavaScript for a web app or Python for a desktop app), here's how you can approach it:
+
+💻 JavaScript (Web App Example)
+Assuming you have an array of student objects like this:
+
+javascript
+const students = [
+  { name: "bob", grade: 87 },
+  { name: "alice", grade: 92 },
+  { name: "john", grade: 78 }
+];
+You can implement the save functionality like this:
+
+javascript
+function saveStudentData() {
+  const csvContent = students.map(student => `${student.name},${student.grade}`).join("\n");
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "students.csv";
+  link.click();
+}
+Attach this to your save button:
+
+
+
+
+
+
+To reimplement the Load Student Data feature using the CSV format (name,grade per line), here's how you can do it in both JavaScript (for web apps) and Python (for desktop apps or scripts):
+
+🌐 JavaScript (Web App Example)
+If you're allowing users to upload a CSV file via an <input type="file">, here's how to read and parse it:
+
+html
+<input type="file" id="fileInput" />
+<button onclick="loadStudentData()">Load</button>
+javascript
+function loadStudentData() {
+  const fileInput = document.getElementById("fileInput");
+  const file = fileInput.files[0];
+  if (!file) return alert("Please select a file.");
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const lines = e.target.result.split("\n");
+    const students = lines.map(line => {
+      const [name, grade] = line.trim().split(",");
+      return { name, grade: parseInt(grade) };
+    });
+    console.log("Loaded students:", students);
+    // You can now update your UI or state with the students array
+  };
+  reader.readAsText(file);
