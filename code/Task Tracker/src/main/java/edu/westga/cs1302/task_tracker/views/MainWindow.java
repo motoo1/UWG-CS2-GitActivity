@@ -1,10 +1,13 @@
 package edu.westga.cs1302.task_tracker.views;
 
 import java.util.Comparator;
+import java.util.List;
 
 import edu.westga.cs1302.task_tracker.model.Task;
 import edu.westga.cs1302.task_tracker.model.Task.TaskPriority;
 import edu.westga.cs1302.task_tracker.model.TaskUtility;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -15,6 +18,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import edu.westga.cs1302.task_tracker.model.AscendingComparison;
+import edu.westga.cs1302.task_tracker.model.DescendingComparison;
 
 /** Controller class for MainWindow of the Task Tracker system.
  * 
@@ -79,7 +84,8 @@ public class MainWindow {
     @FXML
     void sortTasks(ActionEvent event) {
     	if (this.order.getValue() != null) {
-    		this.tasks.getItems().sort(this.order.getValue());
+    		FXCollections.sort(this.tasks.getItems(), this.order.getValue());
+    		this.tasks.refresh();
     	}
 
     }
@@ -90,5 +96,15 @@ public class MainWindow {
     public void initialize() {
     	this.priority.getItems().addAll(TaskPriority.HIGH, TaskPriority.MEDIUM, TaskPriority.LOW);
     	this.priority.setValue(this.priority.getItems().get(0));
+    	
+    	List<Comparator<Task>> comparators = List.of(
+       			new AscendingComparison(),
+    			new DescendingComparison()
+    			);
+    	this.order.getItems().addAll(comparators);
+    	this.order.setValue(this.order.getItems().get(0));
+    	ObservableList<Task> taskList = FXCollections.observableArrayList();
+    	this.tasks.setItems(taskList);
+    	
     }
 }
