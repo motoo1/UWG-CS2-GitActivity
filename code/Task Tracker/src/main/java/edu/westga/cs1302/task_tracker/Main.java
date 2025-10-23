@@ -15,7 +15,7 @@ import java.io.IOException;
  * @version Fall 2025
  */
 public class Main extends Application {
-  private static final String WINDOW_TITLE = "JavaFX Starter Sample";
+  private static final String WINDOW_TITLE = "Project2";
   private static final String GUI_RESOURCE = "views/MainWindow.fxml";
 
   /**

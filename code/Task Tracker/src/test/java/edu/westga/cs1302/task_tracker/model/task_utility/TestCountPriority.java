@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs1302.task_tracker.model.Task;
-import edu.westga.cs1302.task_tracker.model.Task.TaskPriority;
 import edu.westga.cs1302.task_tracker.model.TaskUtility;
+import edu.westga.cs1302.task_tracker.model.Task.TaskPriority;
 
 class TestCountPriority {
 	

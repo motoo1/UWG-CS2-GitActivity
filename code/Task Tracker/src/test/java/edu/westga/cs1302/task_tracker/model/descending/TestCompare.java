@@ -4,78 +4,127 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs1302.task_tracker.model.DescendingComparison;
+import edu.westga.cs1302.task_tracker.model.Descending;
 import edu.westga.cs1302.task_tracker.model.Task;
+import edu.westga.cs1302.task_tracker.model.Task.TaskPriority;
 
-/**
- * 
- * @author motoo1
- * @version Fall 2025
- */
-public class TestCompare {
+class TestCompare {
 
-    private final DescendingComparison comparator = new DescendingComparison();
+	@Test
+	void testO1IsNull() {
+		Task o1 = new Task("name", "desc", TaskPriority.HIGH);
+		Task o2 = new Task("name", "desc", TaskPriority.HIGH);
+		Descending descending = new Descending();
+		
+		assertThrows(IllegalArgumentException.class, ()->{descending.compare(null, o2);});
+	}
 
-    @Test
-    void testHighComparedToHighReturnsZero() {
-        Task high1 = new Task("High1", "", Task.TaskPriority.HIGH);
-        Task high2 = new Task("High2", "", Task.TaskPriority.HIGH);
-        assertEquals(0, comparator.compare(high1, high2)); 
-    }
+	@Test
+	void testO2IsNull() {
+		Task o1 = new Task("name", "desc", TaskPriority.HIGH);
+		Task o2 = new Task("name", "desc", TaskPriority.HIGH);
+		Descending descending = new Descending();
+		
+		assertThrows(IllegalArgumentException.class, ()->{descending.compare(o1, null);});
+	}
+	
+	@Test
+	void testO1HighAndO2MEDIUM() {
+		Task o1 = new Task("name", "desc", TaskPriority.HIGH);
+		Task o2 = new Task("name", "desc", TaskPriority.MEDIUM);
+		Descending descending = new Descending();
+		
+		int result = descending.compare(o1, o2);
 
-    @Test
-    void testHighComparedToMediumReturnsPositive() {
-        Task high = new Task("High", "", Task.TaskPriority.HIGH);
-        Task medium = new Task("Medium", "", Task.TaskPriority.MEDIUM);
-        assertTrue(comparator.compare(high, medium) > 0); 
-    }
+		assertTrue(result < 0);
+	}
+	
+	@Test
+	void testO1HighAndO2LOW() {
+		Task o1 = new Task("name", "desc", TaskPriority.HIGH);
+		Task o2 = new Task("name", "desc", TaskPriority.LOW);
+		Descending descending = new Descending();
+		
+		int result = descending.compare(o1, o2);
+		
+		assertTrue(result < 0);
+	}
+	
+	@Test
+	void testO1MEDIUMAndO2High() {
+		Task o1 = new Task("name", "desc", TaskPriority.MEDIUM);
+		Task o2 = new Task("name", "desc", TaskPriority.HIGH);
+		Descending descending = new Descending();
+		
+		int result = descending.compare(o1, o2);
 
-    @Test
-    void testHighComparedToLowReturnsPositive() {
-        Task high = new Task("High", "", Task.TaskPriority.HIGH);
-        Task low = new Task("Low", "", Task.TaskPriority.LOW);
-        assertTrue(comparator.compare(high, low) > 0); 
-    }
+		assertTrue(result > 0);
+	}
+	
+	@Test
+	void testO1MEDIUMAndO2Medium() {
+		Task o1 = new Task("name", "desc", TaskPriority.MEDIUM);
+		Task o2 = new Task("name", "desc", TaskPriority.MEDIUM);
+		Descending descending = new Descending();
+		
+		int result = descending.compare(o1, o2);
 
-    @Test
-    void testMediumComparedToHighReturnsNegative() {
-        Task medium = new Task("Medium", "", Task.TaskPriority.MEDIUM);
-        Task high = new Task("High", "", Task.TaskPriority.HIGH);
-        assertTrue(comparator.compare(medium, high) < 0); 
-    }
+		assertTrue(result == 0);
+	}
+	
+	@Test
+	void testO1MediumAndO2Low() {
+		Task o1 = new Task("name", "desc", TaskPriority.MEDIUM);
+		Task o2 = new Task("name", "desc", TaskPriority.LOW);
+		Descending descending = new Descending();
+		
+		int result = descending.compare(o1, o2);
 
-    @Test
-    void testMediumComparedToMediumReturnsZero() {
-        Task medium1 = new Task("Medium1", "", Task.TaskPriority.MEDIUM);
-        Task medium2 = new Task("Medium2", "", Task.TaskPriority.MEDIUM);
-        assertEquals(0, comparator.compare(medium1, medium2)); 
-    }
+		assertTrue(result < 0);
+	}
+	
+	@Test
+	void testO1LowAndO2Low() {
+		Task o1 = new Task("name", "desc", TaskPriority.LOW);
+		Task o2 = new Task("name", "desc", TaskPriority.LOW);
+		Descending descending = new Descending();
+		
+		int result = descending.compare(o1, o2);
 
-    @Test
-    void testMediumComparedToLowReturnsPositive() {
-        Task medium = new Task("Medium", "", Task.TaskPriority.MEDIUM);
-        Task low = new Task("Low", "", Task.TaskPriority.LOW);
-        assertTrue(comparator.compare(medium, low) > 0); 
-    }
+		assertTrue(result == 0);
+	}
+	
+	@Test
+	void testO1LowAndO2Medium() {
+		Task o1 = new Task("name", "desc", TaskPriority.LOW);
+		Task o2 = new Task("name", "desc", TaskPriority.MEDIUM);
+		Descending descending = new Descending();
+		
+		int result = descending.compare(o1, o2);
 
-    @Test
-    void testLowComparedToHighReturnsNegative() {
-        Task low = new Task("Low", "", Task.TaskPriority.LOW);
-        Task high = new Task("High", "", Task.TaskPriority.HIGH);
-        assertTrue(comparator.compare(low, high) < 0); 
-    }
+		assertTrue(result > 0);
+	}
+	
+	@Test
+	void testO1LowAndO2High() {
+		Task o1 = new Task("name", "desc", TaskPriority.LOW);
+		Task o2 = new Task("name", "desc", TaskPriority.HIGH);
+		Descending descending = new Descending();
+		
+		int result = descending.compare(o1, o2);
 
-    @Test
-    void testLowComparedToMediumReturnsNegative() {
-        Task low = new Task("Low", "", Task.TaskPriority.LOW);
-        Task medium = new Task("Medium", "", Task.TaskPriority.MEDIUM);
-        assertTrue(comparator.compare(low, medium) < 0); 
-    }
+		assertTrue(result > 0);
+	}
+	
+	@Test
+	void testO1HighAndO2High() {
+		Task o1 = new Task("name", "desc", TaskPriority.HIGH);
+		Task o2 = new Task("name", "desc", TaskPriority.HIGH);
+		Descending descending = new Descending();
+		
+		int result = descending.compare(o1, o2);
 
-    @Test
-    void testLowComparedToLowReturnsZero() {
-        Task low1 = new Task("Low1", "", Task.TaskPriority.LOW);
-        Task low2 = new Task("Low2", "", Task.TaskPriority.LOW);
-        assertEquals(0, comparator.compare(low1, low2)); 
-    }
+		assertTrue(result == 0);
+	}
+
 }

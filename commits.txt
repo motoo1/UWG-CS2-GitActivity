@@ -1,3 +1,49 @@
+commit 2b375313b561d1e614e6404ecf155c1c5c296a39
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Oct 14 17:20:47 2025 -0400
+
+    Support sorting Tasks
+    
+    Added AscendingComparison and DescendingComparison classes
+    Implemented sortTasks method to reorder tasks based on selected comparator
+
+commit 04ed5fe0ec1d293bd01ff55ddbcd463c2423228c
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Oct 14 15:52:49 2025 -0400
+
+    Descending Comparison of Tasks
+    
+    Implemented Descending Comparison class to sort tasks by descending priority
+    Ensures tasks with higher priority appear first in sorted lists
+
+commit 210b3f3fdcb4ef8116afad2400e95862ca558a2e
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Oct 9 15:38:01 2025 -0400
+
+    Ascending Comparison of Tasks
+    Created Ascending comparison class to sort tasks based on priority in
+    ascending order.
+    
+    Priorities are sorted from low, medium and high
+    
+    Also created test cases to compare the low, medium and high priorities
+
+commit 345e1285c53c9b796f6a9cbf13706e8de96031f2
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Oct 2 00:12:35 2025 -0400
+
+    Load Student Data
+    
+    Added functionalityto load current set of students from a file when the load button is clicked
+
+commit c50167345fb930f8f82eccfb13480b501ed754f1
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 30 11:08:52 2025 -0400
+
+    Save Student Data
+    
+    Reimplemented the functionality to save the data of current students and added junit text cases for save student data
+
 commit e4628a72a6c9b3eb32922d220701948c0df303ce
 Author: motoo1 <motoo1@my.westga.edu>
 Date:   Mon Sep 29 08:04:57 2025 -0400
