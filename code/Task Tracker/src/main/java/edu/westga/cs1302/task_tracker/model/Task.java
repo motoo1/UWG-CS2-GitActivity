@@ -1,32 +1,33 @@
 package edu.westga.cs1302.task_tracker.model;
 
-/** Stores basic information for a Task
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+/**
+ * Stores basic information for a Task
  * 
  * @author CS 1302
  * @version Fall 2025
  */
 public class Task {
-	
-	/** Possible priority options for a Task
+
+	/**
+	 * Possible priority options for a Task
 	 * 
 	 * @author CS 1302
 	 * @version Fall 2025
 	 */
 	public enum TaskPriority {
-		HIGH(1),
-		MEDIUM(2),
-		LOW(3);
-		
+		HIGH(1), MEDIUM(2), LOW(3);
+
 		private int value;
-		
+
 		TaskPriority(int value) {
 			this.value = value;
 		}
-		
-		/** Return the value for the priority
-		 * HIGH is 1
-		 * MEDIUM is 2
-		 * LOW is 3
+
+		/**
+		 * Return the value for the priority HIGH is 1 MEDIUM is 2 LOW is 3
 		 * 
 		 * @return the value
 		 */
@@ -34,20 +35,21 @@ public class Task {
 			return this.value;
 		}
 	}
-	
+
 	private String description;
 	private final String name;
 	private final TaskPriority priority;
-	
-	/** Create a new Task with the provided information.
+	private ObservableList<SubTask> subtasks;
+
+	/**
+	 * Create a new Task with the provided information.
 	 * 
-	 * @preconditon name != null && !name.isEmpty() &&
-	 * 				description != null &&
-	 * 				priority != null
+	 * @preconditon name != null && !name.isEmpty() && description != null &&
+	 *              priority != null
 	 * 
-	 * @param name the name of the task
+	 * @param name        the name of the task
 	 * @param description the description of the task
-	 * @param priority the priority of the task
+	 * @param priority    the priority of the task
 	 */
 	public Task(String name, String description, TaskPriority priority) {
 		if (name == null) {
@@ -65,9 +67,11 @@ public class Task {
 		this.name = name;
 		this.description = description;
 		this.priority = priority;
+		this.subtasks = FXCollections.observableArrayList();
 	}
-	
-	/** Return the name of the task
+
+	/**
+	 * Return the name of the task
 	 * 
 	 * @precondition none
 	 * @postcondition none
@@ -77,8 +81,9 @@ public class Task {
 	public String getName() {
 		return this.name;
 	}
-	
-	/** Return the description of the task
+
+	/**
+	 * Return the description of the task
 	 * 
 	 * @precondition none
 	 * @postcondition none
@@ -88,8 +93,9 @@ public class Task {
 	public String getDescription() {
 		return this.description;
 	}
-	
-	/** Return the priority of the task
+
+	/**
+	 * Return the priority of the task
 	 * 
 	 * @precondition none
 	 * @postcondition none
@@ -99,8 +105,9 @@ public class Task {
 	public TaskPriority getPriority() {
 		return this.priority;
 	}
-	
-	/** Updates the description to the provided value
+
+	/**
+	 * Updates the description to the provided value
 	 * 
 	 * @precondition description != null
 	 * @postcondition none
@@ -114,7 +121,8 @@ public class Task {
 		this.description = description;
 	}
 
-	/** Returns the name of the task to represent the task as a String
+	/**
+	 * Returns the name of the task to represent the task as a String
 	 * 
 	 * @precondition none
 	 * @postcondition none
@@ -124,5 +132,42 @@ public class Task {
 	@Override
 	public String toString() {
 		return this.name;
+	}
+
+	/**
+	 * Returns the list of subtasks for this task.
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * @return the list of subtasks for this task
+	 */
+	public ObservableList<SubTask> getSubtasks() {
+		return this.subtasks;
+	}
+
+	/**
+	 * Adds a subtask to this task
+	 * 
+	 * @param subtask the subtask to be added
+	 * @precondition subtask is not null
+	 * @postcondition the subtask is added to this tasks list of subtasks
+	 * @throws IllegalArgumentExeption if subtask is null
+	 */
+	public void addSubtask(SubTask subtask) {
+		if (subtask == null) {
+			throw new IllegalArgumentException("subtask must not be null");
+		}
+		this.subtasks.add(subtask);
+	}
+
+	/**
+	 * Removes a subtask from this task.
+	 * 
+	 * @param subtask the subtask to be removed
+	 * @precondition subtask is not null
+	 * @postcondition the subtask is removed from the list of subtasks
+	 */
+	public void removeSubtask(SubTask subtask) {
+		this.subtasks.remove(subtask);
 	}
 }

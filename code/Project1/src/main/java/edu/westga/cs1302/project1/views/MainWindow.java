@@ -1,5 +1,7 @@
 package edu.westga.cs1302.project1.views;
 
+import edu.westga.cs1302.project1.model.SubTask;
+import edu.westga.cs1302.project1.model.Task.TaskPriority;
 import edu.westga.cs1302.project1.model.Task;
 import edu.westga.cs1302.project1.model.TaskUtils;
 import javafx.collections.FXCollections;
@@ -57,6 +59,16 @@ public class MainWindow {
 
 	@FXML
 	private Button countTasksButton;
+	
+
+	@FXML
+	private Button addSubtaskButton;
+
+	@FXML
+	private Button removeSubtaskButton;
+	
+	@FXML
+	private ListView<SubTask> subtaskListView;
 
 	private ObservableList<Task> taskList;
 
@@ -71,17 +83,19 @@ public class MainWindow {
 		this.priorityCombo.setItems(FXCollections.observableArrayList("Low", "Medium", "High"));
 		this.taskList = FXCollections.observableArrayList();
 		this.taskListView.setItems(this.taskList);
-		this.taskListView.getSelectionModel().selectedItemProperty().addListener((observable, oldtask, newTask) -> {
-			if (newTask != null) {
-				this.descriptionTextArea.setText(newTask.getDescription());
-				this.selectedPriorityField.setText(newTask.getPriority());
-			} else {
-				this.descriptionTextArea.clear();
-				this.selectedPriorityField.clear();
-
-			}
+		this.taskListView.getSelectionModel().selectedItemProperty().addListener((observable, oldTask, newTask) -> {
+		    if (newTask != null) {
+		        this.descriptionTextArea.setText(newTask.getDescription());
+		        this.selectedPriorityField.setText(newTask.getPriority().toString());
+		        this.subtaskListView.setItems(newTask.getSubtasks());
+		    } else {
+		        this.descriptionTextArea.clear();
+		        this.selectedPriorityField.clear();
+		        this.subtaskListView.setItems(FXCollections.observableArrayList());
+		    }
 		});
 	}
+		
 
 	@FXML
 	private void addTask(ActionEvent event) {
@@ -94,8 +108,9 @@ public class MainWindow {
 			return;
 		}
 
-		Task newTask = new Task(name, description, priority);
-		this.taskList.add(newTask);
+		TaskPriority taskPriority = TaskPriority.valueOf(priority.toUpperCase());
+		Task newTask = new Task(name,description, taskPriority);
+		
 
 		this.nameField.clear();
 		this.descriptionArea.clear();
@@ -141,5 +156,17 @@ public class MainWindow {
 		this.lowCountLabel.setText("Low Priority: " + lowCount);
 		this.mediumCountLabel.setText("Medium Priority: " + mediumCount);
 		this.highCountLabel.setText("High Priority: " + highCount);
+	}
+	@FXML
+	private void handleAddSubtask(ActionEvent event) {
+	    Task selectedTask = this.taskListView.getSelectionModel().getSelectedItem();
+	    if (selectedTask == null) {
+	        this.showAlert("Please select a task before adding a subtask.");
+	        return;
+	    }
+	    SubTask newSubtask = new SubTask("New Subtask");
+	    selectedTask.addSubtask(newSubtask);
+	    this.subtaskListView.setItems(selectedTask.getSubtasks());
+
 	}
 }
