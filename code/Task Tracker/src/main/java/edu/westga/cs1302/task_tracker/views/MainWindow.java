@@ -1,11 +1,13 @@
 package edu.westga.cs1302.task_tracker.views;
 
+import javafx.collections.FXCollections;
 import edu.westga.cs1302.task_tracker.model.SubTask;
 import javafx.scene.control.TextInputDialog;
 import java.util.Comparator;
 import edu.westga.cs1302.task_tracker.model.AscendingName;
 import edu.westga.cs1302.task_tracker.model.DescendingName;
 import edu.westga.cs1302.task_tracker.model.AscendingPriority;
+import edu.westga.cs1302.task_tracker.model.ContainerTask;
 import edu.westga.cs1302.task_tracker.model.DescendingPriority;
 import edu.westga.cs1302.task_tracker.model.Task;
 import edu.westga.cs1302.task_tracker.model.TaskUtility;
@@ -47,7 +49,7 @@ public class MainWindow {
 	@FXML
 	private ListView<Task> tasks;
 	@FXML
-	private ListView<SubTask> subtasks;
+	private ListView<Task> subtasks;
 	@FXML
 	private ComboBox<Comparator<Task>> order;
 
@@ -87,13 +89,14 @@ public class MainWindow {
 	 * @param event we will not use this parameter, only here due to JavaFX Library
 	 *              requirement
 	 */
+
 	@FXML
 	void selectTask(MouseEvent event) {
 		Task selectedTask = this.tasks.getSelectionModel().getSelectedItem();
 		if (selectedTask != null) {
 			this.selectedPriority.setText(selectedTask.getPriority().toString());
 			this.selectedDescription.setText(selectedTask.getDescription());
-			this.subtasks.setItems(selectedTask.getSubtasks());
+			this.subtasks.setItems(FXCollections.observableArrayList(selectedTask.getSubTasks()));
 		}
 	}
 
@@ -119,9 +122,11 @@ public class MainWindow {
 	 * 
 	 * @param event the ActionEvent triggered by the button click
 	 */
+
 	@FXML
 	void addSubtask(ActionEvent event) {
 		Task selectedTask = this.tasks.getSelectionModel().getSelectedItem();
+
 		if (selectedTask == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setContentText("Please select a task first.");
@@ -136,21 +141,52 @@ public class MainWindow {
 
 		dialog.showAndWait().ifPresent(subtaskName -> {
 			if (!subtaskName.isEmpty()) {
-				SubTask newSubtask = new SubTask(subtaskName);
-				selectedTask.addSubtask(newSubtask);
-				this.subtasks.setItems(selectedTask.getSubtasks());
+
+				Task newSubtask = new Task(subtaskName, "Subtask of " + selectedTask.getName(),
+						selectedTask.getPriority());
+
+				Task updatedTask = selectedTask.addTask(newSubtask);
+
+				int selectedIndex = this.tasks.getSelectionModel().getSelectedIndex();
+				this.tasks.getItems().set(selectedIndex, updatedTask);
+
+				this.subtasks.setItems(FXCollections.observableArrayList(updatedTask.getSubTasks()));
 			}
 		});
 	}
 
 	/** Remove the currently selected subtask. */
+
 	@FXML
 	void removeSubtask(ActionEvent event) {
 		Task selectedTask = this.tasks.getSelectionModel().getSelectedItem();
-		SubTask selectedSub = this.subtasks.getSelectionModel().getSelectedItem();
+		Task selectedSubtask = this.subtasks.getSelectionModel().getSelectedItem();
 
-		if (selectedTask != null && selectedSub != null) {
-			selectedTask.removeSubtask(selectedSub);
+		if (selectedTask == null) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setContentText("Please select a main task first.");
+			alert.showAndWait();
+			return;
+		}
+
+		if (selectedSubtask == null) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setContentText("Please select a subtask to remove.");
+			alert.showAndWait();
+			return;
+		}
+
+		if (selectedTask instanceof ContainerTask containerTask) {
+			containerTask.getSubTasks().remove(selectedSubtask);
+
+			this.subtasks.getItems().setAll(containerTask.getSubTasks());
+
+			int index = this.tasks.getSelectionModel().getSelectedIndex();
+			this.tasks.getItems().set(index, containerTask);
+		} else {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+			alert.setContentText("This task does not contain any subtasks.");
+			alert.showAndWait();
 		}
 	}
 
