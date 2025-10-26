@@ -170,4 +170,31 @@ public class Task {
 	public void removeSubtask(SubTask subtask) {
 		this.subtasks.remove(subtask);
 	}
+
+	/**
+	 * Adds a subtask (of type Task) and returns a new ContainerTask.
+	 *
+	 * @precondition task != null
+	 * @postcondition Returns a new ContainerTask containing the provided task
+	 * @param task the task to add as a subtask
+	 * @return a new ContainerTask containing this and the provided task
+	 */
+	public ContainerTask addTask(Task task) {
+		if (task == null) {
+			throw new IllegalArgumentException("task must not be null");
+		}
+
+		ContainerTask container = new ContainerTask(this.getName(), this.getDescription(), this.getPriority());
+		container.addTask(task);
+		return container;
+	}
+
+	/**
+	 * Returns an empty list of Task objects.
+	 *
+	 * @return an empty ObservableList of Tasks
+	 */
+	public ObservableList<Task> getSubTasks() {
+		return FXCollections.observableArrayList();
+	}
 }
