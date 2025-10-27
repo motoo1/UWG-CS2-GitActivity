@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0"
 	prefWidth="620.0" xmlns="http://javafx.com/javafx/21"
 	xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="edu.westga.cs1302.task_tracker.views.MainWindow">
@@ -50,6 +50,18 @@
 		<Label layoutX="455.0" layoutY="21.0" text="Subtasks" />
 		<ListView fx:id="subtasks" layoutX="455.0" layoutY="41.0"
 			prefHeight="308.0" prefWidth="150.0" />
+		<Label layoutX="455.0" layoutY="390.0" text="Selected Subtask:"
+			style="-fx-font-weight: bold;" />
+		<Label layoutX="455.0" layoutY="410.0" text="Name:" />
+		<TextField fx:id="selectedSubtaskName" layoutX="505.0"
+			layoutY="406.0" prefWidth="100.0" editable="false" />
+		<Label layoutX="455.0" layoutY="440.0" text="Description:" />
+		<TextArea fx:id="selectedSubtaskDescription" layoutX="455.0"
+			layoutY="460.0" prefWidth="150.0" prefHeight="60.0" editable="false"
+			wrapText="true" />
+		<Label layoutX="455.0" layoutY="525.0" text="Priority:" />
+		<TextField fx:id="selectedSubtaskPriority" layoutX="505.0"
+			layoutY="521.0" prefWidth="100.0" editable="false" />
 		<Button layoutX="455.0" layoutY="361.0" mnemonicParsing="false"
 			onAction="#addSubtask" text="Add Subtask" />
 		<Button layoutX="540.0" layoutY="361.0" mnemonicParsing="false"

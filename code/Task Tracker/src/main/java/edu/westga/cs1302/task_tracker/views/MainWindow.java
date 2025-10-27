@@ -52,6 +52,12 @@ public class MainWindow {
 	private ListView<Task> subtasks;
 	@FXML
 	private ComboBox<Comparator<Task>> order;
+	@FXML
+	private TextField selectedSubtaskName;
+	@FXML
+	private TextArea selectedSubtaskDescription;
+	@FXML
+	private TextField selectedSubtaskPriority;
 
 	/**
 	 * Add a new task with the provided information to the listview.
@@ -65,6 +71,7 @@ public class MainWindow {
 	 * @param event we will not use this parameter, only here due to JavaFX Library
 	 *              requirement
 	 */
+
 	@FXML
 	void addTask(ActionEvent event) {
 		try {
@@ -256,13 +263,23 @@ public class MainWindow {
 	public void initialize() {
 		this.priority.getItems().addAll(TaskPriority.HIGH, TaskPriority.MEDIUM, TaskPriority.LOW);
 		this.priority.setValue(this.priority.getItems().get(0));
+
 		this.order.getItems().add(new AscendingPriority());
 		this.order.getItems().add(new DescendingPriority());
 		this.order.getItems().add(new AscendingName());
 		this.order.getItems().add(new DescendingName());
-		this.priority.setValue(this.priority.getItems().get(0));
 
-		this.priority.setValue(this.priority.getItems().get(0));
+		this.subtasks.getSelectionModel().selectedItemProperty().addListener((observable, oldSubtask, newSubtask) -> {
+			if (newSubtask != null) {
+				this.selectedSubtaskName.setText(newSubtask.getName());
+				this.selectedSubtaskDescription.setText(newSubtask.getDescription());
+				this.selectedSubtaskPriority.setText(newSubtask.getPriority().toString());
+			} else {
+				this.selectedSubtaskName.setText("");
+				this.selectedSubtaskDescription.setText("");
+				this.selectedSubtaskPriority.setText("");
+			}
+		});
 	}
 
 	private void resortTasks() {
