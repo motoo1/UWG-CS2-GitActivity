@@ -197,6 +197,19 @@ public class MainWindow {
 		}
 	}
 
+	@FXML
+	void selectSubtask(MouseEvent event) {
+		Task selectedSub = this.subtasks.getSelectionModel().getSelectedItem();
+		if (selectedSub != null) {
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Subtask Details");
+			alert.setHeaderText(selectedSub.getName());
+			alert.setContentText(
+					"Priority: " + selectedSub.getPriority() + "\n\nDescription: " + selectedSub.getDescription());
+			alert.showAndWait();
+		}
+	}
+
 	/**
 	 * Update the description of the selected task.
 	 * 
