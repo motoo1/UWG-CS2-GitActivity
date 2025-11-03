@@ -1,7 +1,6 @@
 package edu.westga.cs1302.task_tracker.views;
 
 import javafx.collections.FXCollections;
-import edu.westga.cs1302.task_tracker.model.SubTask;
 import javafx.scene.control.TextInputDialog;
 import java.util.Comparator;
 import edu.westga.cs1302.task_tracker.model.AscendingName;
@@ -162,7 +161,11 @@ public class MainWindow {
 		});
 	}
 
-	/** Remove the currently selected subtask. */
+	/**
+	 * Remove the currently selected subtask.
+	 *
+	 * @param event the action event that triggered this method
+	 */
 
 	@FXML
 	void removeSubtask(ActionEvent event) {
