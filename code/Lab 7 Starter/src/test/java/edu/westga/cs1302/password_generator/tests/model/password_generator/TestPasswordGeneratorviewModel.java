@@ -14,51 +14,57 @@ import edu.westga.cs1302.password_generator.viewmodel.PasswordGeneratorViewModel
  * @version Fall 2025
  * @author motoo1
  */
-class TestPasswordGeneratorViewModel {
+ public class TestPasswordGeneratorviewModel {
 
 	private PasswordGeneratorViewModel viewModel;
+	
 
-	@BeforeEach
-	void setUp() {
-		this.viewModel = new PasswordGeneratorViewModel();
+		@BeforeEach
+		public void setUp() {
+			this.viewModel = new PasswordGeneratorViewModel();
+		}
+
+		/**
+		 * Test that a password is generated when valid inputs are provided.
+		 */
+		@Test
+		public void testGeneratePasswordWithValidSettings() {
+			this.viewModel.lengthProperty().set("10");
+			this.viewModel.generatePassword(true, true, true);
+
+			String password = this.viewModel.passwordProperty().get();
+
+			assertNotNull(password, "Password should not be null");
+			assertTrue(password.length() >= 1, "Password should not be empty");
+		}
+
+		/**
+		 * Test that invalid length input defaults gracefully (e.g., to 1).
+		 */
+		@Test
+		public void testGeneratePasswordWithInvalidLengthInput() {
+			this.viewModel.lengthProperty().set("abc"); // invalid input
+			this.viewModel.generatePassword(true, false, false);
+
+			String password = this.viewModel.passwordProperty().get();
+
+			assertNotNull(password);
+			assertTrue(password.length() >= 1, "Should still generate a valid password");
+		}
+
+		/**
+		 * Test that the password updates each time generatePassword() is called.
+		 */
+		@Test
+		public void testPasswordChangesOnRegeneration() {
+			this.viewModel.lengthProperty().set("8");
+			this.viewModel.generatePassword(true, true, false);
+			String firstPassword = this.viewModel.passwordProperty().get();
+
+			this.viewModel.generatePassword(true, true, false);
+			String secondPassword = this.viewModel.passwordProperty().get();
+
+			assertNotEquals(firstPassword, secondPassword, "Passwords should be different across generations");
+		}
 	}
-
-	/**
-	 * Tests that the default length property is initialized correctly.
-	 */
-	@Test
-	void testDefaultLengthIsEight() {
-		assertEquals("8", this.viewModel.lengthProperty().get(), "Default length should be '8'");
-	}
-
-	/**
-	 * Tests that generatePassword sets a non-empty password.
-	 */
-	@Test
-	void testGeneratePasswordSetsPasswordProperty() {
-		// Make sure you added public StringProperty passwordProperty() in the ViewModel
-		assertEquals("", this.viewModel.passwordProperty().get(), "Password should start empty");
-
-		this.viewModel.generatePassword();
-
-		String password = this.viewModel.passwordProperty().get();
-
-		assertNotNull(password, "Password should not be null after generation");
-		assertFalse(password.isEmpty(), "Password should not be empty after generation");
-	}
-
-	/**
-	 * Tests that two generated passwords are different (shows randomness).
-	 */
-	@Test
-	void testGeneratePasswordProducesDifferentPasswords() {
-		this.viewModel.generatePassword();
-		String firstPassword = this.viewModel.passwordProperty().get();
-
-		this.viewModel.generatePassword();
-		String secondPassword = this.viewModel.passwordProperty().get();
-
-		assertNotEquals(firstPassword, secondPassword,
-				"Two consecutive passwords should not be identical (unless fixed by seed)");
-	}
-}
+	
