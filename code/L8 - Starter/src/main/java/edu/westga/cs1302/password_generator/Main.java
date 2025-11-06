@@ -8,11 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * Starting point for the project. Launches the main window.
+/** Starting point for the project. Launches the main window.
  * 
  * @author CS 1302
- * @version Fall 2024
+ * @version Fall 2025
  */
 public class Main extends Application {
 	private static final String WINDOW_TITLE = "Password Generator";
