@@ -1,7 +1,8 @@
 package edu.westga.cs1302.password_generator.viewmodel;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import java.util.Random;
-
 import edu.westga.cs1302.password_generator.model.PasswordGenerator;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -21,6 +22,7 @@ public class ViewModel {
 	
 	private StringProperty password;
 	private StringProperty errorText;
+	private ObservableList<String> passwords;
 	
     private PasswordGenerator generator;
 	
@@ -37,6 +39,16 @@ public class ViewModel {
 
         Random randomNumberGenerator = new Random();
         this.generator = new PasswordGenerator(randomNumberGenerator.nextLong());
+        this.passwords = FXCollections.observableArrayList();
+	}
+	/**
+	 * Returns the list of generated passwords
+	 * 
+	 * @return an observable list containing the generated passwords
+	 */
+	
+	public ObservableList<String> getPasswords() {
+	    return this.passwords;
 	}
 
 	/** Return the minimum length property
@@ -116,8 +128,9 @@ public class ViewModel {
     	this.generator.setMustHaveAtLeastOneUpperCaseLetter(this.requireUppercase.getValue());
     	
     	String password = this.generator.generatePassword();
-    	
     	this.password.setValue(password);
+    	this.errorText.setValue("");
+    	this.passwords.add(password);
     }
 
 }
