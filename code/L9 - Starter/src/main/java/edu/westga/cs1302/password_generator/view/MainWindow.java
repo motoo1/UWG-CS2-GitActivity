@@ -61,8 +61,17 @@ public class MainWindow {
 		this.errorTextLabel.textProperty().bind(this.vm.getErrorText());
 		this.passwordHistory.setItems(this.vm.getPasswordHistory());
 
-		this.minimumLength.textProperty().addListener((observable, newValue, oldValue) -> {
-			this.minLengthErrorText.setVisible(!newValue.matches("\\d+") || Integer.parseInt(newValue) == 0);
+		this.minimumLength.textProperty().addListener((observable, oldValue, newValue) -> {
+			boolean invalid = true;
+
+			if (newValue.matches("\\d+")) {
+				int val = Integer.parseInt(newValue);
+				invalid = (val <= 0);
+			}
+
+			this.minLengthErrorText.setVisible(invalid);
+
+			this.generatePasswordButton.setDisable(invalid);
 		});
 
 		this.generatePasswordButton.setOnAction((event) -> {
@@ -120,5 +129,3 @@ public class MainWindow {
 		alert.showAndWait();
 	}
 }
-
-
