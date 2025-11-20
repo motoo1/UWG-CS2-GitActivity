@@ -79,6 +79,12 @@ public class MainWindow {
 		});
 	}
 
+	/**
+	 * Handles saving password history to a selected file Opens a file chooser,
+	 * writes each password to the file and displays alerts
+	 * 
+	 * @param event the action event triggered when the user clicks the Save button
+	 */
 	@FXML
 	private void handleSave(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
@@ -96,16 +102,23 @@ public class MainWindow {
 				alert.setHeaderText(null);
 				alert.setContentText("Passwords saved successfully to:\n" + file.getAbsolutePath());
 				alert.showAndWait();
-			} catch (IOException e) {
+			} catch (IOException exception) {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle(null);
 				alert.setHeaderText("Error saving file");
-				alert.setContentText(e.getMessage());
+				alert.setContentText(exception.getMessage());
 				alert.showAndWait();
 			}
 		}
 	}
 
+	/**
+	 * Handles displaying information about the application Shows an informational
+	 * alert containing details about the lab
+	 * 
+	 * @param event the action event triggered when the user selects the About
+	 *              action
+	 */
 	@FXML
 	private void handleAbout(ActionEvent event) {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -116,16 +129,13 @@ public class MainWindow {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Handles closing the current window
+	 * 
+	 * @param event the action event triggered when the user selects the Close option
+	 */
 	@FXML
 	private void handleClose(ActionEvent event) {
 		((Node) (this.errorTextLabel)).getScene().getWindow().hide();
-	}
-
-	private void showAlert(Alert.AlertType type, String title, String message) {
-		Alert alert = new Alert(type);
-		alert.setTitle(title);
-		alert.setHeaderText(null);
-		alert.setContentText(message);
-		alert.showAndWait();
 	}
 }
