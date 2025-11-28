@@ -12,26 +12,23 @@ class MainWindowViewModelTest {
 
 	private MainWindowViewModel viewModel;
 
-	// This runs before each test method
 	@BeforeEach
 	void setUp() {
 		viewModel = new MainWindowViewModel();
 	}
 
-	// Test adding a contact
 	@Test
 	void testAddContactSuccessfully() {
 		viewModel.getName().set("Alice");
 		viewModel.getPhoneNumber().set("1234567");
 		viewModel.addContact();
 
-		assertEquals(1, viewModel.getContacts().size()); // list should have 1 contact
+		assertEquals(1, viewModel.getContacts().size());
 		Contact contact = viewModel.getContacts().get(0);
 		assertEquals("Alice", contact.getName());
 		assertEquals("1234567", contact.getPhoneNumber());
 	}
 
-	// Test searching by name
 	@Test
 	void testFindContactByName() {
 		viewModel.getName().set("Bob");
@@ -44,7 +41,6 @@ class MainWindowViewModelTest {
 		assertTrue(result.contains("5551234"));
 	}
 
-	// Test searching by phone number
 	@Test
 	void testFindContactByPhoneNumber() {
 		viewModel.getName().set("Charlie");
@@ -57,14 +53,12 @@ class MainWindowViewModelTest {
 		assertTrue(result.contains("9876543"));
 	}
 
-	// Test invalid search
 	@Test
 	void testFindContactWithInvalidCriteria() {
 		viewModel.getSearchCriteria().set("!@#$%");
 		assertThrows(IllegalArgumentException.class, () -> viewModel.findContact());
 	}
 
-	// Test no contact found
 	@Test
 	void testFindContactNotFound() {
 		viewModel.getSearchCriteria().set("NonExistent");
