@@ -1,6 +1,6 @@
 package edu.westga.cs1302.task_tracker.views;
-
-import javafx.collections.FXCollections;
+import edu.westga.cs1302.task_tracker.model.Collection;
+import edu.westga.cs1302.task_tracker.viewmodel.CollectionViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -20,36 +20,29 @@ public class MainWindow {
 	@FXML
 	private TextField collectionName;
 	@FXML
-	private ListView<String> collections;
+	private ListView<Collection> collections;
+	private final CollectionViewModel viewModel = new CollectionViewModel();
 		
 	@FXML
 	void addCollection(ActionEvent event) {
-	    String name = this.collectionName.getText().trim();
-
-	    if (name.isEmpty()) {
-	        Alert alert = new Alert(Alert.AlertType.WARNING);
-	        alert.setContentText("Please enter a collection name.");
+	    if (viewModel.nameProperty().get().isBlank()) {
+	        Alert alert = new Alert(Alert.AlertType.WARNING, "Please enter a collection name ");
 	        alert.showAndWait();
 	        return;
 	    }
 
-	    this.collections.getItems().add(name);
-	    this.collectionName.clear();
-	}
+	    viewModel.addCollection();	}
 
 	@FXML
 	void removeCollection(ActionEvent event) {
-	    String selected = this.collections.getSelectionModel().getSelectedItem();
-
-	    if (selected == null) {
-	        Alert alert = new Alert(Alert.AlertType.WARNING);
-	        alert.setContentText("Please select a collection to remove.");
+	    if (viewModel.selectedCollectionProperty().get() == null) {
+	        Alert alert = new Alert(Alert.AlertType.WARNING,"Please select a collection to remove.");
 	        alert.showAndWait();
 	        return;
 	    }
+	    viewModel.removeCollection();
 
-	    this.collections.getItems().remove(selected);
-	}
+	    	}
 
 	/**
 	 * Perform any needed initialization of UI components and underlying objects.
@@ -60,8 +53,10 @@ public class MainWindow {
 	 */
 	@FXML
 	public void initialize() {
-				this.collections.setItems(FXCollections.observableArrayList());
-	
+		
+	collectionName.textProperty().bindBidirectional(viewModel.nameProperty());
+	collections.setItems(viewModel.getCollections());
+	viewModel.selectedCollectionProperty().bind(collections.getSelectionModel().selectedItemProperty());
 	ContextMenu collectionContextMenu = new ContextMenu();
 	MenuItem removeItem = new MenuItem("Remove Collection");
 	removeItem.setOnAction(e -> removeCollection(null));
