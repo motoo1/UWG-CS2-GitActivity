@@ -1,0 +1,303 @@
+commit 798f79f566864a59ce3e9a981a7cdd80ecbf349c
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Sun Oct 26 20:30:26 2025 -0400
+
+    Connect UI to Business Logic for adding Task(PART 4B)
+    
+    Implemented pop alert to display selected subtaskdetails in Mainwindow
+
+commit 0e21c9bb2c3e844b0c69cc405b0257b396502980
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Sun Oct 26 20:19:01 2025 -0400
+
+    Displaying Selected subtask(PART 4A)
+    
+    Added UI for subtasks in the FXML and also added the controller logic in
+    mainwindow.java
+
+commit 3ce1ab31834288a34c3a8a640ce2a8c91c23cdf0
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Sat Oct 25 23:13:36 2025 -0400
+
+    Connected UI to business Logic for subtasks(PART 3C)
+    
+    Replaced selected task when adding subtask amd displayed subtasks correctly
+
+commit 4c725729e1d29f4033c15614966a442a3f4fcd9b
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Sat Oct 25 22:18:39 2025 -0400
+
+    Business Logic for SubTasks(PART 3B)
+    
+    Added addtask and getsubtasks methods to task and also created ContainerTask
+    to manage tasks
+
+commit 9d466335999742f5ad6de159f9ab12ac2c7a114e
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Sat Oct 25 21:22:55 2025 -0400
+
+    UI for SubTasks(PART 3A)
+    
+    Updated Task to store and manage subtasks and also updated mainwindow and FXML
+    to display and add and also remove subtasks
+
+commit 68262a95e14257d921edebe54276c569c92edfcf
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Fri Oct 24 23:20:49 2025 -0400
+
+    Connect UI to Business Logic for sorting Based on Name(Part 2B)
+    
+    Updated MainWindow to include AscendingName and DescendingName comparators
+    for sorting tasks by name
+
+commit 70c73915a97bb0625af14ffa0294fc7019cc5f57
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Fri Oct 24 22:44:30 2025 -0400
+
+    Sorting based on Name(Part 2A)
+    
+    Renamed Ascending and Descending comparators by added priority and creating
+    new comparators for name as well as adding test unit cases
+
+commit 82ea5dcf86f1ffeeb34ab590d18246fdf755c580
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Oct 23 13:26:53 2025 -0400
+
+    Connect UI to Business Logic for Resorting Tasks(1A)
+    
+    Implemented automatic task resorting on add and update in MainWindow
+    Also added resort task helper method and c all it on task addition and
+    description update to keep task list sorted based on selected comparator
+
+commit 2b375313b561d1e614e6404ecf155c1c5c296a39
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Oct 14 17:20:47 2025 -0400
+
+    Support sorting Tasks
+    
+    Added AscendingComparison and DescendingComparison classes
+    Implemented sortTasks method to reorder tasks based on selected comparator
+
+commit 04ed5fe0ec1d293bd01ff55ddbcd463c2423228c
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Oct 14 15:52:49 2025 -0400
+
+    Descending Comparison of Tasks
+    
+    Implemented Descending Comparison class to sort tasks by descending priority
+    Ensures tasks with higher priority appear first in sorted lists
+
+commit 210b3f3fdcb4ef8116afad2400e95862ca558a2e
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Oct 9 15:38:01 2025 -0400
+
+    Ascending Comparison of Tasks
+    Created Ascending comparison class to sort tasks based on priority in
+    ascending order.
+    
+    Priorities are sorted from low, medium and high
+    
+    Also created test cases to compare the low, medium and high priorities
+
+commit 345e1285c53c9b796f6a9cbf13706e8de96031f2
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Oct 2 00:12:35 2025 -0400
+
+    Load Student Data
+    
+    Added functionalityto load current set of students from a file when the load button is clicked
+
+commit c50167345fb930f8f82eccfb13480b501ed754f1
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 30 11:08:52 2025 -0400
+
+    Save Student Data
+    
+    Reimplemented the functionality to save the data of current students and added junit text cases for save student data
+
+commit e4628a72a6c9b3eb32922d220701948c0df303ce
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Mon Sep 29 08:04:57 2025 -0400
+
+    Connect UI to Business Logic(Part 5C)
+    
+    Connected UI to display tasks count by priority
+    Updated version of part 5c
+
+commit bc3be113a12ada13f0a249b9021d2c59e87a3bb2
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Mon Sep 29 07:57:51 2025 -0400
+
+    Business Logic for Counting Tasks(Part 5B)
+    
+    Added Utility method to count tasks by specified priority
+    Updated version of part 5b
+
+commit 41489fe89ab2eabec1e576e495d6df958728ed98
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Mon Sep 29 07:41:10 2025 -0400
+
+    Implenting UI(Part 5A)
+    
+    Added labels and button in MainWindow to show task counts by priority
+
+commit b62c47f9b36eaaa8eb672f49ec1f3155244ae86f
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 23 14:39:58 2025 -0400
+
+    Updating some parts of the commits because it was messing up
+    
+    Implementing UI
+    
+    Made task description editable in UI and update the button associated method in the mainWindow(part 3A)
+
+commit b53e76516266b98bdc8a7103b63b730b8227c980
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 23 12:28:20 2025 -0400
+
+    Implement UI for adding tasks(Part 1 A)
+    
+    Added fields(textfield and textarea), combo box, button, labels and listview in FXML
+
+commit 04fe6269300d78d1d987363cb14009f504f0e935
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 23 09:56:07 2025 -0400
+
+    Implement task removal  functionality in MainWindow(part 4B)
+    
+    Added removeTask() method to handle removing current selected task from listView
+    Integrated the method with the Remove Task button action
+
+commit e9f107ab3881b2797194186cbe0f4d383e09acce
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 23 09:48:03 2025 -0400
+
+    Add UI for removing tasks from the list
+    
+    Updated MainWindow.fxml to include remove task button
+    Linked the button to a removeTask method in MainWindow
+    This is for part 4A
+
+commit badb81e15c73292a9cb67c9706cb08b5325a82a0
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Mon Sep 22 22:32:42 2025 -0400
+
+    Implementing UI
+    
+    Added editable textarea for task description in mainwindow and also update
+    description button
+
+commit d37a20699bf3cc7c057c2bdb277932b38d1943e3
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Sun Sep 21 22:37:34 2025 -0400
+
+    Updating the UI(Part 2A)
+    
+    Updated the UI to show description and priority of a new task(labels,
+    read-only textarea and textfield).
+    
+    Connected UI to display selected task
+    
+    Connected the UI to busines logic so when a task is selected, its description
+    and priority are displayed in the properread-only components.
+
+commit a686e6cf7513133c1d6a948542a0af471db36aa8
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Sat Sep 20 22:22:22 2025 -0400
+
+    Implement UI for adding tasks (1A)
+    
+    Added fields(textfield and textarea), combo box, button, labels, and listview in FXML
+    
+    Add Task class (1B)
+    
+    stores name, description, and priority with toString
+    
+    Connect UI to business logic (1C)
+    
+    Implemented initialize() and onAddTask() to add tasks to listview
+
+commit 742ff890ee561dc88f8889f0952ee23487bf7f6a
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Sep 11 13:50:59 2025 -0400
+
+    Update get Text
+    
+    Updated the getText method in the billview
+
+commit 587aa89120ea454834e48eaa6dcb8b096b3045a7
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Sep 11 12:46:43 2025 -0400
+
+    Static Bill Calculations
+    
+    Made a new class called BillCalculator with sttaic methods that operate
+    on an array of BillItem objects
+
+commit 1117b2a1e9ddb70030e7d02893428dc59b677ee0
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Sep 11 12:33:17 2025 -0400
+
+    Static Bill Calculations
+    
+    Added a new class and named it BillCalculator with static methods
+    that operates on an array of BillItem objects
+
+commit 485787951e48f0c84d7f6c42718b6b4ccc2af121
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Sep 11 11:43:34 2025 -0400
+
+    Safer Data Class
+    Updated all the private fields to private final
+
+commit 6d1809fb5ee2dd28282bee3b9d18d42e725be413
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Sep 4 14:31:25 2025 -0400
+
+    Implement behavior of system
+    
+    created a new billItem , stored the bill as a private field, added amount and name to display the bill text.
+
+commit c5293682c3cb515a3443cfffc0681d434b6c4926
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Sep 4 12:58:02 2025 -0400
+
+    Develop a GUI
+    
+    Implemented a text field, text area, labels and button in my GUI.
+
+commit f41723de56b673e06a67c22cdbd670f1a1b16f96
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Thu Sep 4 10:51:36 2025 -0400
+
+    Setting up JavaFx Lab 3
+    
+    Added Bill model classes to javafx sample project
+    Renamed project and base package for lab3 along withj corresponding references.
+    Did not incorporate tests for Bill project classes yet.
+
+commit 3f60ad3dbadce381f23fce3be8d5adbfc410cb85
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Wed Sep 3 12:37:03 2025 -0400
+
+    Tested addItem, getText, constructor
+    
+    implemented tests for the Bill::addItem method, BillItem::constructor, and BillView::getText method.
+
+commit d96dd496bd81e88c993ea23ce0daa728aa429d27
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 2 15:40:08 2025 -0400
+
+    This is my second commit after understanding
+
+commit 140e83d0f992979dfcefc3d02982c429da7c3d58
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Sep 2 15:30:30 2025 -0400
+
+    My first real commit after understanding
+
+commit ea6e0ee60d5e2c075c402e9898c1d8ae94a200ad
+Author: motoo1 <motoo1@my.westga.edu>
+Date:   Tue Aug 19 10:04:43 2025 -0400
+
+    Initial commit
