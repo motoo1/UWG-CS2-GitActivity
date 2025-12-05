@@ -10,8 +10,9 @@
 	<children>
 				<Label layoutX="14.0" layoutY="25.0" text="Collection Name:" />
 <TextField fx:id="collectionName" layoutX="115.0" layoutY="21.0" prefWidth="150.0" />
-<Button layoutX="276.0" layoutY="21.0" onAction="#addCollection" text="Add Collection" />
-<Button layoutX="390.0" layoutY="21.0" onAction="#removeCollection" text="Remove Collection" />
 <ListView fx:id="collections" layoutX="15.0" layoutY="53.0" prefHeight="100.0" prefWidth="200.0" />
+<Button fx:id="addButton" layoutX="276.0" layoutY="21.0" onAction="#addCollection" text="Add Collection" />
+<Button layoutX="390.0" layoutY="21.0" onAction="#removeCollection" text="Remove Collection" />
+
 	</children>
 </AnchorPane>
