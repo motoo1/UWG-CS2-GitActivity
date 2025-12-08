@@ -30,34 +30,21 @@ public class FindComicWindow {
 
     public void setCollection(Collection collection) {
         this.collection = collection;
-        this.comicMap = new HashMap<>();
-        for (Comic comic : collection.getComics()) {
-            String key = comic.getTitle().toLowerCase() + "#" + comic.getIssueNumber();
-            comicMap.put(key, comic);
-        }
-    }
+                }
+    
 
     @FXML
     private void search() {
-        String title = titleTextField.getText().trim().toLowerCase();
-        int issue;
+        String title = titleTextField.getText().trim();
+        String issueNumber = issueNumberTextField.getText().trim();
 
-        try {
-            issue = Integer.parseInt(issueNumberTextField.getText().trim());
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Issue number must be an integer.");
-            alert.showAndWait();
-            return;
-        }
+        Comic found = this.collection.findComic(title, issueNumber);
 
-        String key = title + "#" + issue;
-        Comic found = this.comicMap.get(key);
-
-        Alert alert;
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         if (found != null) {
-            alert = new Alert(Alert.AlertType.INFORMATION, "Comic found: " + found);
+            alert.setContentText("Comic found: " + found);
         } else {
-            alert = new Alert(Alert.AlertType.INFORMATION, "Comic not found.");
+            alert.setContentText("Comic not found.");
         }
         alert.showAndWait();
     }

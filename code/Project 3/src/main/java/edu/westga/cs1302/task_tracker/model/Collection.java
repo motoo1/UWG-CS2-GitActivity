@@ -62,10 +62,15 @@ public class Collection {
 		this.comicMap.remove(makeKey(comic.getTitle(), comic.getIssueNumber()));
 	}
 
-	public Comic findComic(String title, int issueNumber) {
-		return this.comicMap.get(makeKey(title, issueNumber));
+	public Comic findComic(String title, String issueNumber) {
+	    try {
+	        int issue = Integer.parseInt(issueNumber.trim());
+	        return this.comicMap.get(makeKey(title, issue));
+	    } catch (NumberFormatException e) {
+	        return null;
+	    }
 	}
-
+	
 	private String makeKey(String title, int issueNumber) {
 		return title.toLowerCase() + "-" + issueNumber;
 	}

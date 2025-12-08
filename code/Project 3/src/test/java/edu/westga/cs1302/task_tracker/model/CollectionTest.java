@@ -58,4 +58,41 @@ class CollectionTest {
         assertFalse(collection.getComics().contains(comic1));
         assertTrue(collection.getComics().contains(comic2));
     }
+    @Test
+    void testFindExistingComic() {
+        collection.addComic(comic1);
+        Comic found = collection.findComic("Spider-Man", "1");
+        assertNotNull(found);
+        assertEquals(comic1, found);
+    }
+
+    @Test
+    void testFindNonExistingComic() {
+        collection.addComic(comic1);
+        Comic found = collection.findComic("Batman", "1");
+        assertNull(found);
+    }
+
+    @Test
+    void testFindComicCaseInsensitive() {
+        collection.addComic(comic1);
+        Comic found = collection.findComic("sPiDeR-mAn", "1");
+        assertNotNull(found);
+        assertEquals(comic1, found);
+    }
+
+    @Test
+    void testFindComicWithInvalidIssueNumber() {
+        collection.addComic(comic1);
+        Comic found = collection.findComic("Spider-Man", "abc");
+        assertNull(found);
+    }
+
+    @Test
+    void testFindComicAfterRemoval() {
+        collection.addComic(comic1);
+        collection.removeComic(comic1);
+        Comic found = collection.findComic("Spider-Man", "1");
+        assertNull(found);
+    }
 }
