@@ -6,13 +6,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs1302.task_tracker.views.MainWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
+	prefWidth="620.0" xmlns="http://javafx.com/javafx/23.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="edu.westga.cs1302.task_tracker.views.MainWindow">
 	<children>
-				<Label layoutX="14.0" layoutY="25.0" text="Collection Name:" />
-<TextField fx:id="collectionName" layoutX="115.0" layoutY="21.0" prefWidth="150.0" />
-<ListView fx:id="collections" layoutX="15.0" layoutY="53.0" prefHeight="100.0" prefWidth="200.0" />
-<Button fx:id="addButton" layoutX="276.0" layoutY="21.0" onAction="#addCollection" text="Add Collection" />
-<Button layoutX="390.0" layoutY="21.0" onAction="#removeCollection" text="Remove Collection" />
-
+		<Label layoutX="14.0" layoutY="25.0" text="Collection Name:" />
+		<TextField fx:id="collectionName" layoutX="115.0"
+			layoutY="21.0" prefWidth="150.0" />
+		<ListView fx:id="collections" layoutX="15.0" layoutY="53.0"
+			prefHeight="100.0" prefWidth="200.0" />
+		<Button fx:id="addButton" layoutX="276.0" layoutY="21.0"
+			onAction="#addCollection" text="Add Collection" />
+		<Button layoutX="390.0" layoutY="21.0"
+			onAction="#removeCollection" text="Remove Collection" />
+		<Label layoutX="300" layoutY="60" text="Comics in Collection:" />
+		<ListView fx:id="comicListView" layoutX="236.0"
+			layoutY="77.0" prefHeight="300" prefWidth="350"/>
+		<Button fx:id="addComicButton" layoutX="300" layoutY="400"
+			onAction="#addComic" text="Add Comic" />
+		<Button fx:id="removeComicButton" layoutX="400" layoutY="400"
+			text="Remove Comic" />
 	</children>
 </AnchorPane>

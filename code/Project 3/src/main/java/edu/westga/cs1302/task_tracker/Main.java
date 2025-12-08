@@ -1,12 +1,12 @@
 package edu.westga.cs1302.task_tracker;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 /**
  * Entry point for the program
@@ -44,7 +44,7 @@ public class Main extends Application {
    * @param args command line arguments
    */
   public static void main(String[] args) {
-    Main.launch(args);
+    Application.launch(args);
   }
-  
+
 }

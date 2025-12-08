@@ -1,16 +1,19 @@
 package edu.westga.cs1302.task_tracker.viewmodel;
 
 import edu.westga.cs1302.task_tracker.model.Collection;
-import javafx.beans.property.*;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * ViewModel for storing and managing collections. Handles properties and
- * methods for UI binding.
- * 
- * Task 1c
- * 
+ * ViewModel class for managing collections in the application
+ * Provides properties and observable lists for UI binding.
+ *
+ * @author motoo1
+ * @version 1.0
  */
 public class CollectionViewModel {
 
@@ -27,17 +30,29 @@ public class CollectionViewModel {
 		this.selectedCollection = new SimpleObjectProperty<>(null);
 	}
 
-	/** Property for the name of a new collection */
+	/**
+	 * Returns the property used for storing the name of a new collection
+	 *
+	 * @return the StringProperty that holds the new collection name
+	 */
 	public StringProperty nameProperty() {
 		return this.nameProperty;
 	}
 
-	/** Property for the currently selected collection */
+	/**
+	 *  Returns the property representing the currently selected collection
+	 *
+	 * @return the ObjectProperty that stores the selected collection
+	 */
 	public ObjectProperty<Collection> selectedCollectionProperty() {
 		return this.selectedCollection;
 	}
 
-	/** Observable list of all collections */
+	/**
+	 * Returns the observable list containing all collections
+	 *
+	 * @return the ObservableList of all collections in the ViewModel
+	 */
 	public ObservableList<Collection> getCollections() {
 		return this.collections;
 	}
