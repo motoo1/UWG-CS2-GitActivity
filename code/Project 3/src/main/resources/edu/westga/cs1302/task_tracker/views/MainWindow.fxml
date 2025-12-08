@@ -27,6 +27,8 @@
 		<Button fx:id="addComicButton" layoutX="300" layoutY="400"
 			onAction="#addComic" text="Add Comic" />
 		<Button fx:id="removeComicButton" layoutX="400" layoutY="400"
-			text="Remove Comic" />
+					text="Remove Comic" />
+					<Button fx:id="findComicButton" layoutX="500" layoutY="400"
+        text="Find Comic" onAction="#openFindComicWindow"/>
 	</children>
 </AnchorPane>

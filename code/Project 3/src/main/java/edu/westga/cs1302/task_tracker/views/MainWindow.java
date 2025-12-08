@@ -43,6 +43,8 @@ public class MainWindow {
 	private ListView<Collection> collections;
 	@FXML
 	private MenuItem removeComicContextMenu;
+	@FXML
+	private Button findComicButton;
 
 	private final CollectionViewModel viewModel = new CollectionViewModel();
 
@@ -68,26 +70,26 @@ public class MainWindow {
 
 	@FXML
 	void addComic(ActionEvent event) {
-	    Collection selectedCollection = this.viewModel.selectedCollectionProperty().get();
-	    if (selectedCollection == null) {
-	        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a collection first.");
-	        alert.showAndWait();
-	        return;
-	    }
+		Collection selectedCollection = this.viewModel.selectedCollectionProperty().get();
+		if (selectedCollection == null) {
+			Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a collection first.");
+			alert.showAndWait();
+			return;
+		}
 
-	    try {
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddComicWindow.fxml"));
-	        Parent root = loader.load();
-	        AddComicWindow controller = loader.getController();
-	        controller.setViewModel(new ComicViewModel(), selectedCollection);
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("AddComicWindow.fxml"));
+			Parent root = loader.load();
+			AddComicWindow controller = loader.getController();
+			controller.setViewModel(new ComicViewModel(), selectedCollection);
 
-	        Stage stage = new Stage();
-	        stage.setScene(new Scene(root));
-	        stage.setTitle("Add Comic");
-	        stage.showAndWait();
-	    } catch (IOException exception) {
-	        exception.printStackTrace();
-	    }
+			Stage stage = new Stage();
+			stage.setScene(new Scene(root));
+			stage.setTitle("Add Comic");
+			stage.showAndWait();
+		} catch (IOException exception) {
+			exception.printStackTrace();
+		}
 	}
 
 	@FXML
@@ -97,6 +99,30 @@ public class MainWindow {
 			return;
 		}
 		this.viewModel.selectedCollectionProperty().get().getComics().remove(selected);
+	}
+
+	@FXML
+	private void openFindComicWindow(ActionEvent event) {
+		Collection selectedCollection = this.viewModel.selectedCollectionProperty().get();
+		if (selectedCollection == null) {
+			Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a collection first.");
+			alert.showAndWait();
+			return;
+		}
+
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("FindComicWindow.fxml"));
+			Parent root = loader.load();
+			FindComicWindow controller = loader.getController();
+			controller.setCollection(selectedCollection);
+
+			Stage stage = new Stage();
+			stage.setScene(new Scene(root));
+			stage.setTitle("Find Comic");
+			stage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -110,6 +136,7 @@ public class MainWindow {
 	public void initialize() {
 		this.addComicButton.setOnAction(e -> this.addComic(null));
 		this.removeComicButton.setOnAction(e -> this.removeComic(null));
+		this.findComicButton.setOnAction(e -> this.openFindComicWindow(null));
 		this.viewModel.selectedCollectionProperty().addListener((obs, oldCollection, newCollection) -> {
 			if (newCollection != null) {
 				this.comicListView.setItems(newCollection.getComics());
@@ -134,7 +161,7 @@ public class MainWindow {
 		this.collections.setContextMenu(collectionContextMenu);
 		ContextMenu comicContextMenu = new ContextMenu();
 		MenuItem removeComicItem = new MenuItem("Remove Comic");
-		removeComicItem.setOnAction(e -> this.removeComic(null)); 
+		removeComicItem.setOnAction(e -> this.removeComic(null));
 		comicContextMenu.getItems().add(removeComicItem);
 		this.comicListView.setContextMenu(comicContextMenu);
 

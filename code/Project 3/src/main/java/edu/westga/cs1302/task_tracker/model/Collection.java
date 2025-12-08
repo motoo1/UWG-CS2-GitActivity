@@ -1,7 +1,10 @@
 package edu.westga.cs1302.task_tracker.model;
 
+import java.util.Map;
+import java.util.HashMap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 /**
  * Represents a named collection.
  *
@@ -13,6 +16,7 @@ public class Collection {
 
 	private String name;
 	private ObservableList<Comic> comics;
+	private Map<String, Comic> comicMap = new HashMap<>();
 
 	/**
 	 * Creates a new Collection with the provided name.
@@ -50,10 +54,20 @@ public class Collection {
 
 	public void addComic(Comic comic) {
 		this.comics.add(comic);
+		this.comicMap.put(makeKey(comic.getTitle(), comic.getIssueNumber()), comic);
 	}
 
 	public void removeComic(Comic comic) {
 		this.comics.remove(comic);
+		this.comicMap.remove(makeKey(comic.getTitle(), comic.getIssueNumber()));
+	}
+
+	public Comic findComic(String title, int issueNumber) {
+		return this.comicMap.get(makeKey(title, issueNumber));
+	}
+
+	private String makeKey(String title, int issueNumber) {
+		return title.toLowerCase() + "-" + issueNumber;
 	}
 
 	@Override
@@ -61,5 +75,3 @@ public class Collection {
 		return this.name;
 	}
 }
-
-
