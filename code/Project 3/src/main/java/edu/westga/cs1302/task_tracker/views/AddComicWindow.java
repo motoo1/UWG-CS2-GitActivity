@@ -1,64 +1,58 @@
 package edu.westga.cs1302.task_tracker.views;
 
 import edu.westga.cs1302.task_tracker.model.Collection;
-import edu.westga.cs1302.task_tracker.model.Comic;
+import edu.westga.cs1302.task_tracker.viewmodel.ComicViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.converter.NumberStringConverter;
 
 public class AddComicWindow {
 
-    @FXML
-    private TextField titleTextField;
+	@FXML
+	private TextField titleTextField;
 
-    @FXML
-    private TextField issueNumberTextField;
+	@FXML
+	private TextField issueNumberTextField;
 
-    @FXML
-    private Button confirmButton;
+	@FXML
+	private Button confirmButton;
 
-    @FXML
-    private Button cancelButton;
+	@FXML
+	private Button cancelButton;
 
-    private Collection collection;
+	private Collection collection;
+	private ComicViewModel viewModel;
 
-    // Call this before showing the window
-    public void setCollection(Collection collection) {
-        this.collection = collection;
-    }
+	public void setViewModel(ComicViewModel viewModel, Collection selectedCollection) {
+		this.viewModel = viewModel;
+		this.viewModel.selectedCollectionProperty().set(selectedCollection);
+		this.titleTextField.textProperty().bindBidirectional(viewModel.titleProperty());
+		this.issueNumberTextField.textProperty().bindBidirectional(viewModel.issueNumberProperty(),
+				new NumberStringConverter());
+	}
 
-    @FXML
-    private void confirm() {
-        String title = this.titleTextField.getText().trim();
-        String issueText = this.issueNumberTextField.getText().trim();
+	public void setCollection(Collection collection) {
+		this.collection = collection;
+	}
 
-        if (title.isEmpty() || issueText.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Please fill in both fields.");
-            alert.showAndWait();
-            return;
-        }
+	@FXML
+	private void confirm() {
+		try {
+			this.viewModel.addComic(); // now handled via ViewModel
+			Stage stage = (Stage) this.confirmButton.getScene().getWindow();
+			stage.close();
+		} catch (IllegalArgumentException e) {
+			Alert alert = new Alert(Alert.AlertType.WARNING, e.getMessage());
+			alert.showAndWait();
+		}
+	}
 
-        int issueNumber;
-        try {
-            issueNumber = Integer.parseInt(issueText);
-        } catch (NumberFormatException exception) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Issue number must be an integer.");
-            alert.showAndWait();
-            return;
-        }
-
-        Comic newComic = new Comic(title, issueNumber);
-        this.collection.getComics().add(newComic);
-
-        Stage stage = (Stage) this.confirmButton.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    private void cancel() {
-        Stage stage = (Stage) this.cancelButton.getScene().getWindow();
-        stage.close();
-    }
+	@FXML
+	private void cancel() {
+		Stage stage = (Stage) this.cancelButton.getScene().getWindow();
+		stage.close();
+	}
 }
