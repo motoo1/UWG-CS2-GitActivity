@@ -49,4 +49,23 @@ class FindComicViewModelTest {
 		Comic found = viewModel.searchComic("Spider-Man", "99");
 		assertNull(found);
 	}
+	@Test
+	void searchBlankTitleReturnsNull() {
+	    assertNull(viewModel.searchComic("", "1"));
+	}
+
+	@Test
+	void searchBlankIssueReturnsNull() {
+	    assertNull(viewModel.searchComic("Spider-Man", ""));
+	}
+
+	@Test
+	void searchNullTitleReturnsNull() {
+	    assertNull(viewModel.searchComic(null, "1"));
+	}
+
+	@Test
+	void searchNullIssueReturnsNull() {
+	    assertNull(viewModel.searchComic("Spider-Man", null));
+	}
 }
