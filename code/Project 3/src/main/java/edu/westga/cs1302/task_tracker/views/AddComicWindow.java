@@ -41,7 +41,7 @@ public class AddComicWindow {
 	@FXML
 	private void confirm() {
 		try {
-			this.viewModel.addComic(); // now handled via ViewModel
+			this.viewModel.addComic(); 
 			Stage stage = (Stage) this.confirmButton.getScene().getWindow();
 			stage.close();
 		} catch (IllegalArgumentException e) {
