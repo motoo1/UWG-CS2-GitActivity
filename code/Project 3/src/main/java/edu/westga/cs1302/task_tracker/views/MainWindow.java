@@ -6,6 +6,7 @@ import edu.westga.cs1302.task_tracker.model.Collection;
 import edu.westga.cs1302.task_tracker.model.Comic;
 import edu.westga.cs1302.task_tracker.viewmodel.CollectionViewModel;
 import edu.westga.cs1302.task_tracker.viewmodel.ComicViewModel;
+import edu.westga.cs1302.task_tracker.viewmodel.FindComicViewModel;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -114,7 +115,7 @@ public class MainWindow {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("FindComicWindow.fxml"));
 			Parent root = loader.load();
 			FindComicWindow controller = loader.getController();
-			controller.setCollection(selectedCollection);
+			controller.setViewModel(new FindComicViewModel(selectedCollection));
 
 			Stage stage = new Stage();
 			stage.setScene(new Scene(root));
