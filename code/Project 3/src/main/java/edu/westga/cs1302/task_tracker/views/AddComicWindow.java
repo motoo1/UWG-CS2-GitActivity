@@ -32,6 +32,9 @@ public class AddComicWindow {
 		this.titleTextField.textProperty().bindBidirectional(viewModel.titleProperty());
 		this.issueNumberTextField.textProperty().bindBidirectional(viewModel.issueNumberProperty(),
 				new NumberStringConverter());
+		this.confirmButton.disableProperty().bind(this.titleTextField.textProperty().isEmpty()
+		.or(this.issueNumberTextField.textProperty().isEmpty())
+		);
 	}
 
 	public void setCollection(Collection collection) {
@@ -41,7 +44,7 @@ public class AddComicWindow {
 	@FXML
 	private void confirm() {
 		try {
-			this.viewModel.addComic(); 
+			this.viewModel.addComic();
 			Stage stage = (Stage) this.confirmButton.getScene().getWindow();
 			stage.close();
 		} catch (IllegalArgumentException e) {
